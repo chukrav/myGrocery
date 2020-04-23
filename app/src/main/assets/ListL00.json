@@ -1,0 +1,254 @@
+[
+    {
+        "ID": "1",
+        "amount": "2.0",
+        "category": "VEGETABLE",
+        "cost": "3.0",
+        "name": "tomato"
+    },
+    {
+        "ID": "2",
+        "amount": "2.0",
+        "category": "VEGETABLE",
+        "cost": "3.0",
+        "name": "cucumbers"
+    },
+    {
+        "ID": "3",
+        "amount": "2.0",
+        "category": "VEGETABLE",
+        "cost": "3.0",
+        "name": "pepper"
+    },
+    {
+        "ID": "4",
+        "amount": "2.0",
+        "category": "VEGETABLE",
+        "cost": "3.0",
+        "name": "cabbage"
+    },
+    {
+        "ID": "5",
+        "amount": "1.0",
+        "category": "VEGETABLE",
+        "cost": "3.0",
+        "name": "beet"
+    },
+    {
+        "ID": "6",
+        "amount": "2.0",
+        "category": "VEGETABLE",
+        "cost": "3.0",
+        "name": "carrot"
+    },
+    {
+        "ID": "7",
+        "amount": "1.0",
+        "category": "VEGETABLE",
+        "cost": "6.0",
+        "name": "lettuce-hasa"
+    },
+    {
+        "ID": "8",
+        "amount": "1.0",
+        "category": "VEGETABLE",
+        "cost": "6.0",
+        "name": "lettuce-baby"
+    },
+    {
+        "ID": "9",
+        "amount": "0.5",
+        "category": "VEGETABLE",
+        "cost": "6.0",
+        "name": "spring onions"
+    },
+    {
+        "ID": "10",
+        "amount": "1.0",
+        "category": "VEGETABLE",
+        "cost": "3.0",
+        "name": "onion"
+    },
+    {
+        "ID": "11",
+        "amount": "2.0",
+        "category": "VEGETABLE",
+        "cost": "3.0",
+        "name": "apples"
+    },
+    {
+        "ID": "12",
+        "amount": "2.0",
+        "category": "VEGETABLE",
+        "cost": "3.0",
+        "name": "oranges"
+    },
+    {
+        "ID": "13",
+        "amount": "4.0",
+        "category": "HOUSEHOLDS",
+        "cost": "10.0",
+        "name": "soap"
+    },
+    {
+        "ID": "14",
+        "amount": "3.0",
+        "category": "HOUSEHOLDS",
+        "cost": "15.0",
+        "name": "Toothpaste"
+    },
+    {
+        "ID": "15",
+        "amount": "1.0",
+        "category": "CEREALS",
+        "cost": "12.0",
+        "name": "bread"
+    },
+    {
+        "ID": "16",
+        "amount": "1.0",
+        "category": "CEREALS",
+        "cost": "10.0",
+        "name": "pasta"
+    },
+    {
+        "ID": "17",
+        "amount": "1.0",
+        "category": "CEREALS",
+        "cost": "9.0",
+        "name": "oatmeal porridge"
+    },
+    {
+        "ID": "18",
+        "amount": "1.0",
+        "category": "MILKY",
+        "cost": "15.0",
+        "name": "yogurt"
+    },
+    {
+        "ID": "19",
+        "amount": "3.0",
+        "category": "MILKY",
+        "cost": "12.0",
+        "name": "yoghurt rivien"
+    },
+    {
+        "ID": "20",
+        "amount": "3.0",
+        "category": "MILKY",
+        "cost": "5.5",
+        "name": "cheese cottage"
+    },
+    {
+        "ID": "21",
+        "amount": "1.0",
+        "category": "MILKY",
+        "cost": "12.0",
+        "name": "cheese ski"
+    },
+    {
+        "ID": "22",
+        "amount": "0.2",
+        "category": "MILKY",
+        "cost": "4.4",
+        "name": "butter"
+    },
+    {
+        "ID": "23",
+        "amount": "1.0",
+        "category": "CANS",
+        "cost": "17.0",
+        "name": "vegetable oil"
+    },
+    {
+        "ID": "24",
+        "amount": "3.0",
+        "category": "CANS",
+        "cost": "10.5",
+        "name": "water"
+    },
+    {
+        "ID": "25",
+        "amount": "1.0",
+        "category": "CANS",
+        "cost": "12.0",
+        "name": "sparkling water"
+    },
+    {
+        "ID": "26",
+        "amount": "2.0",
+        "category": "DRINKS",
+        "cost": "12.0",
+        "name": "beer"
+    },
+    {
+        "ID": "27",
+        "amount": "4.0",
+        "category": "DRINKS",
+        "cost": "25.0",
+        "name": "wine"
+    },
+    {
+        "ID": "28",
+        "amount": "1.0",
+        "category": "DRINKS",
+        "cost": "55.0",
+        "name": "wine Compary"
+    },
+    {
+        "ID": "29",
+        "amount": "1.0",
+        "category": "HOUSEHOLDS",
+        "cost": "8.5",
+        "name": "floor cleaner"
+    },
+    {
+        "ID": "30",
+        "amount": "5.0",
+        "category": "HOUSEHOLDS",
+        "cost": "70.0",
+        "name": "washing powder"
+    },
+    {
+        "ID": "31",
+        "amount": "2.0",
+        "category": "HOUSEHOLDS",
+        "cost": "25.0",
+        "name": "Anticalk"
+    },
+    {
+        "ID": "32",
+        "amount": "1.0",
+        "category": "DRINKS",
+        "cost": "45.0",
+        "name": "cocoa"
+    },
+    {
+        "ID": "33",
+        "amount": "0.15",
+        "category": "DRINKS",
+        "cost": "14.0",
+        "name": "tea"
+    },
+    {
+        "ID": "34",
+        "amount": "1.0",
+        "category": "DRINKS",
+        "cost": "75.0",
+        "name": "coffe"
+    },
+    {
+        "ID": "35",
+        "amount": "1.0",
+        "category": "HOUSEHOLDS",
+        "cost": "32.0",
+        "name": "toilet paper"
+    },
+    {
+        "ID": "36",
+        "amount": "1.0",
+        "category": "CEREALS",
+        "cost": "11.0",
+        "name": "buckwheat"
+    }
+]
