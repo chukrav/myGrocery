@@ -78,12 +78,27 @@ public class MainActivity extends AppCompatActivity {
         mNumbersList.setAdapter(mAdapter);
 
         mDb = AppDatabase.getInstance(this);
+        List<TaskEntry> entryList = mDb.taskDao().loadAllTasks();
+        Log.d(LOG_TAG, "Got DB-handle. List length" + entryList.size());
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        List<TaskEntry> tasks = mDb.taskDao().loadAllTasks();
-        Log.d(LOG_TAG, "**************: "+tasks.size());
+        List<TaskEntry> entryList = mDb.taskDao().loadAllTasks();
+        Log.d(LOG_TAG, "***** List length" + entryList.size());
+
+        int id;
+        String category;
+        String name;
+
+        for (TaskEntry item : entryList) {
+            id = item.getId();
+            name = item.getName();
+            category = item.getCategory();
+            id = item.getId();
+            Log.d(LOG_TAG, "" + id + ", " + name + ", " + category);
+
+        }
     }
 }
