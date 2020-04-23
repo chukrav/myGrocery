@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         mNumbersList.setAdapter(mAdapter);
 
-        mDb = AppDatabase.getInstance(this);
+        mDb = AppDatabase.getInstance(this.getApplicationContext());
         List<TaskEntry> entryList = mDb.taskDao().loadAllTasks();
         Log.d(LOG_TAG, "Got DB-handle. List length" + entryList.size());
     }
