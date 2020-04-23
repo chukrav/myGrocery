@@ -80,6 +80,7 @@ public class TaskEntry {
         TaskEntry[] taskEntries = new TaskEntry[LEN];
         for (int i = 0; i < LEN; i++) {
             taskEntries[i] = JSONuse.readJObject(jsonArray,i);
+
         }
         return taskEntries;
     }

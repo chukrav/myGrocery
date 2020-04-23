@@ -81,9 +81,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        List<TaskEntry>tasks =  mDb.taskDao().loadAllTasks();
-        Log.d(LOG_TAG,"");
+    protected void onResume() {
+        super.onResume();
+        List<TaskEntry> tasks = mDb.taskDao().loadAllTasks();
+        Log.d(LOG_TAG, "**************: "+tasks.size());
     }
 }

@@ -53,6 +53,7 @@ public abstract class AppDatabase extends RoomDatabase {
                                 String data = JSONuse.loadJSONFromAsset(context);
                                 JSONArray array = JSONuse.readJSONArray(data);
                                 TaskEntry taskEntry = JSONuse.readJObject(array, 0);
+                                getInstance(context).taskDao().insertAll(TaskEntry.populateDAta(array));
                                 Log.d(LOG_TAG, "After JSON read ...." + taskEntry.getName());
 
                             }
