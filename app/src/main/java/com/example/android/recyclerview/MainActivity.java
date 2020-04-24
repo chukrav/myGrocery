@@ -16,10 +16,14 @@
 package com.example.android.recyclerview;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.android.recyclerview.database.AppDatabase;
@@ -125,5 +129,44 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
     public void onItemClickListener(int itemId) {
         Log.d(LOG_TAG, "Item clcked: " + itemId);
         Toast.makeText(this,"Item clicked:"+itemId,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.bn_vegetab:
+                Log.d(LOG_TAG,"Menu: vegetables");
+                return true;
+            case R.id.bn_cans:
+                Log.d(LOG_TAG,"Menu: cans");
+                return true;
+            case R.id.bn_cereals:
+                Log.d(LOG_TAG,"Menu: cereals");
+                return true;
+            case R.id.bn_drinks:
+                Log.d(LOG_TAG,"Menu: drinks");
+                return true;
+            case R.id.bn_milky:
+                Log.d(LOG_TAG,"Menu: milky");
+                return true;
+            case R.id.bn_households:
+                Log.d(LOG_TAG,"Menu: households");
+                return true;
+            case R.id.bn_ordinary:
+                Log.d(LOG_TAG,"Menu: ordinary");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+
+
     }
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/bn_vegetab"
+            android:title="vegetables"/>
+        <item
+            android:id="@+id/bn_milky"
+            android:title="milky" />
+        <item
+            android:id="@+id/bn_households"
+            android:title="households" />
+        <item
+            android:id="@+id/bn_cereals"
+            android:title="cereals" />
+        <item
+            android:id="@+id/bn_cans"
+            android:title="cans" />
+        <item
+            android:id="@+id/bn_drinks"
+            android:title="drinks" />
+    </group>
+    <group>
+        <item android:id="@+id/bn_ordinary"
+            android:title="ordinary lst"/>
+    </group>
+
+
+</menu>
