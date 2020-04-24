@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         style="@style/TextAppearance.AppCompat"
         android:fontFamily="monospace"
-        android:textSize="42sp"
+        android:textSize="24sp"
         android:layout_gravity="left|center"/>
 
 

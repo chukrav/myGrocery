@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-//                        mAdapter.setTasks(entryList);
+                        mAdapter.setTasks(entryList);
                         int id;
                         String category;
                         String name;

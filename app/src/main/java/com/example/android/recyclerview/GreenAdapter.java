@@ -107,7 +107,12 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
     @Override
     public void onBindViewHolder(NumberViewHolder holder, int position) {
         Log.d(TAG, "#" + position);
-        holder.bind(position);
+        TaskEntry taskEntry = mTaskEntries.get(position);
+        String name = taskEntry.getName();
+        int id = taskEntry.getId();
+        String category = taskEntry.getCategory();
+        holder.bind(""+id+", "+name+", "+category);
+//        holder.bind(position);
     }
 
     /**
@@ -131,8 +136,10 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
             listItemNumberView = (TextView) itemView.findViewById(R.id.tv_item_number);
         }
 
-        void bind(int listIndex) {
-            listItemNumberView.setText(String.valueOf(listIndex));
+        //        void bind(int listIndex) {
+        void bind(String listIndex) {
+//            listItemNumberView.setText(String.valueOf(listIndex));
+            listItemNumberView.setText(listIndex);
         }
     }
     // TODO (13) Within NumberViewHolder, create a TextView variable called listItemNumberView
@@ -146,7 +153,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
 
     public void setTasks(List<TaskEntry> tasks) {
         mTaskEntries = tasks;
-        notifyDataSetChanged();
+//        notifyDataSetChanged();
     }
 
 }
