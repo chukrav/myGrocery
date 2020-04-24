@@ -20,13 +20,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.android.recyclerview.database.AppDatabase;
 import com.example.android.recyclerview.database.TaskEntry;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements GreenAdapter.ItemClickListener {
 
     private static final int NUM_LIST_ITEMS = 100;
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
          * The GreenAdapter is responsible for displaying each item in the list.
          */
 //        mAdapter = new GreenAdapter(NUM_LIST_ITEMS);
-        mAdapter = new GreenAdapter(this);
+        mAdapter = new GreenAdapter(this, this);
         mNumbersList.setAdapter(mAdapter);
 
         mDb = AppDatabase.getInstance(this.getApplicationContext());
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void retreiveTasks(){
+    private void retreiveTasks() {
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
@@ -101,22 +102,28 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         mAdapter.setTasks(entryList);
-                        int id;
-                        String category;
-                        String name;
+//                        int id;
+//                        String category;
+//                        String name;
 
-                        for (TaskEntry item : entryList) {
-                            id = item.getId();
-                            name = item.getName();
-                            category = item.getCategory();
-                            id = item.getId();
-                            Log.d(LOG_TAG, "" + id + ", " + name + ", " + category);
-
-                        }
+//                        for (TaskEntry item : entryList) {
+//                            id = item.getId();
+//                            name = item.getName();
+//                            category = item.getCategory();
+//                            id = item.getId();
+//                            Log.d(LOG_TAG, "" + id + ", " + name + ", " + category);
+//
+//                        }
                     }
                 });
             }
         });
 
+    }
+
+    @Override
+    public void onItemClickListener(int itemId) {
+        Log.d(LOG_TAG, "Item clcked: " + itemId);
+        Toast.makeText(this,"Item clicked:"+itemId,Toast.LENGTH_SHORT).show();
     }
 }

@@ -22,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.recyclerview.database.TaskEntry;
 
@@ -60,20 +61,23 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
     private int mNumberItems;
     private List<TaskEntry> mTaskEntries;
     private Context mContext;
+    final private ItemClickListener mItemClickListener;
 
     /**
      * Constructor for GreenAdapter that accepts a number of items to display and the specification
      * for the ListItemClickListener.
-     *
+     * <p>
      * //@param numberOfItems Number of items to display in list
+     *
      * @param context App context from Main Activityß
      */
 //    public GreenAdapter(int numberOfItems) {
 //        mNumberItems = numberOfItems;
 //    }
-    public GreenAdapter(Context context) {
+    public GreenAdapter(Context context, ItemClickListener itemClickListener) {
 //        mNumberItems = numberOfItems;
         mContext = context;
+        mItemClickListener = itemClickListener;
     }
 
     /**
@@ -92,6 +96,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
         Context context = viewGroup.getContext();
         int layoutIdForListItem = R.layout.number_list_item;
         LayoutInflater inflater = LayoutInflater.from(context);
+//        LayoutInflater inflater = LayoutInflater.from(mContext);
         boolean shouldAttachToParentImmediately = false;
 
         View view = inflater.inflate(layoutIdForListItem, viewGroup, shouldAttachToParentImmediately);
@@ -117,7 +122,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
         String name = taskEntry.getName();
         int id = taskEntry.getId();
         String category = taskEntry.getCategory();
-        holder.bind(""+id+", "+name+", "+category);
+        holder.bind("" + id + ", " + name + ", " + category);
 //        holder.bind(position);
     }
 
@@ -140,20 +145,37 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
         return mTaskEntries;
     }
 
+    public void setTasks(List<TaskEntry> tasks) {
+        mTaskEntries = tasks;
+//        notifyDataSetChanged();
+    }
+
+    interface ItemClickListener {
+        void onItemClickListener(int itemId);
+    }
+
     // TODO (12) Create a class called NumberViewHolder that extends RecyclerView.ViewHolder
-    class NumberViewHolder extends RecyclerView.ViewHolder {
+    class NumberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView listItemNumberView;
 
         public NumberViewHolder(View itemView) {
             super(itemView);
             listItemNumberView = (TextView) itemView.findViewById(R.id.tv_item_number);
+            itemView.setOnClickListener(this);
         }
 
         //        void bind(int listIndex) {
         void bind(String listIndex) {
 //            listItemNumberView.setText(String.valueOf(listIndex));
             listItemNumberView.setText(listIndex);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int elementId = mTaskEntries.get(getAdapterPosition()).getId();
+            mItemClickListener.onItemClickListener(elementId);
+
         }
     }
     // TODO (13) Within NumberViewHolder, create a TextView variable called listItemNumberView
@@ -165,9 +187,5 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
     // TODO (17) Within bind, set the text of listItemNumberView to the listIndex
     // TODO (18) Be careful to get the String representation of listIndex, as using setText with an int does something different
 
-    public void setTasks(List<TaskEntry> tasks) {
-        mTaskEntries = tasks;
-//        notifyDataSetChanged();
-    }
 
 }
