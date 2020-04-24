@@ -73,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
         /*
          * The GreenAdapter is responsible for displaying each item in the list.
          */
-        mAdapter = new GreenAdapter(NUM_LIST_ITEMS);
-
+//        mAdapter = new GreenAdapter(NUM_LIST_ITEMS);
+        mAdapter = new GreenAdapter(this);
         mNumbersList.setAdapter(mAdapter);
 
         mDb = AppDatabase.getInstance(this.getApplicationContext());

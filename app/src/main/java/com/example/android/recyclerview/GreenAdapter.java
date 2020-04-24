@@ -59,15 +59,21 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
 
     private int mNumberItems;
     private List<TaskEntry> mTaskEntries;
+    private Context mContext;
 
     /**
      * Constructor for GreenAdapter that accepts a number of items to display and the specification
      * for the ListItemClickListener.
      *
-     * @param numberOfItems Number of items to display in list
+     * //@param numberOfItems Number of items to display in list
+     * @param context App context from Main Activityß
      */
-    public GreenAdapter(int numberOfItems) {
-        mNumberItems = numberOfItems;
+//    public GreenAdapter(int numberOfItems) {
+//        mNumberItems = numberOfItems;
+//    }
+    public GreenAdapter(Context context) {
+//        mNumberItems = numberOfItems;
+        mContext = context;
     }
 
     /**
@@ -123,7 +129,15 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
      */
     @Override
     public int getItemCount() {
-        return mNumberItems;
+        if (mTaskEntries == null) {
+            return 0;
+        }
+        return mTaskEntries.size();
+        //return mNumberItems;
+    }
+
+    public List<TaskEntry> getTasks() {
+        return mTaskEntries;
     }
 
     // TODO (12) Create a class called NumberViewHolder that extends RecyclerView.ViewHolder
