@@ -23,6 +23,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.android.recyclerview.database.TaskEntry;
+
+import java.util.List;
+
 /**
  * We couldn't come up with a good name for this class. Then, we realized
  * that this lesson is about RecyclerView.
@@ -54,6 +58,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
     private static final String TAG = GreenAdapter.class.getSimpleName();
 
     private int mNumberItems;
+    private List<TaskEntry> mTaskEntries;
 
     /**
      * Constructor for GreenAdapter that accepts a number of items to display and the specification
@@ -126,7 +131,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
             listItemNumberView = (TextView) itemView.findViewById(R.id.tv_item_number);
         }
 
-        void bind(int listIndex){
+        void bind(int listIndex) {
             listItemNumberView.setText(String.valueOf(listIndex));
         }
     }
@@ -138,5 +143,10 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
     // TODO (16) Within the NumberViewHolder class, create a void method called bind that accepts an int parameter called listIndex
     // TODO (17) Within bind, set the text of listItemNumberView to the listIndex
     // TODO (18) Be careful to get the String representation of listIndex, as using setText with an int does something different
+
+    public void setTasks(List<TaskEntry> tasks) {
+        mTaskEntries = tasks;
+        notifyDataSetChanged();
+    }
 
 }

@@ -85,20 +85,38 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        List<TaskEntry> entryList = mDb.taskDao().loadAllTasks();
-        Log.d(LOG_TAG, "***** List length" + entryList.size());
+//        List<TaskEntry> entryList = mDb.taskDao().loadAllTasks();
+//        Log.d(LOG_TAG, "***** List length *****" + entryList.size());
+        retreiveTasks();
 
-        int id;
-        String category;
-        String name;
 
-        for (TaskEntry item : entryList) {
-            id = item.getId();
-            name = item.getName();
-            category = item.getCategory();
-            id = item.getId();
-            Log.d(LOG_TAG, "" + id + ", " + name + ", " + category);
+    }
 
-        }
+    private void retreiveTasks(){
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                final List<TaskEntry> entryList = mDb.taskDao().loadAllTasks();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+//                        mAdapter.setTasks(entryList);
+                        int id;
+                        String category;
+                        String name;
+
+                        for (TaskEntry item : entryList) {
+                            id = item.getId();
+                            name = item.getName();
+                            category = item.getCategory();
+                            id = item.getId();
+                            Log.d(LOG_TAG, "" + id + ", " + name + ", " + category);
+
+                        }
+                    }
+                });
+            }
+        });
+
     }
 }
