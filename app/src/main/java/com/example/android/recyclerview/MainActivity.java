@@ -22,7 +22,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -33,7 +32,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements GreenAdapter.ItemClickListener {
 
-    private static final int NUM_LIST_ITEMS = 100;
+    private static final int ALL_LIST_ITEMS = 0;
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     /*
@@ -44,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
     private RecyclerView mNumbersList;
     private AppDatabase mDb;
     private List<TaskEntry> mTasks;
+    private int TAKEN_QUERY = ALL_LIST_ITEMS;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,9 +92,8 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
     @Override
     protected void onResume() {
         super.onResume();
-//        List<TaskEntry> entryList = mDb.taskDao().loadAllTasks();
-//        Log.d(LOG_TAG, "***** List length *****" + entryList.size());
-        retreiveTasks();
+        retreiveQuery(TAKEN_QUERY);
+//        retreiveTasks();
 
 
     }
@@ -164,60 +164,74 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
 
     }
 
-    private void retreiveQuery(final int item) {
+    private void retreiveQuery(int... items) {
+        final int item;
+        item = items[0];
+
+        Log.d(LOG_TAG,"----Argument passed: "+items.length+", "+item);
 
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
                 List<TaskEntry> list = null;
                 switch (item) {
+                    case ALL_LIST_ITEMS:
+                        TAKEN_QUERY = ALL_LIST_ITEMS;
+                        Log.d(LOG_TAG, "Retrieve all tasks");
+                        list = mDb.taskDao().loadAllTasks();
+                        break;
                     case R.id.bn_vegetab:
+                        TAKEN_QUERY = R.id.bn_vegetab;
                         Log.d(LOG_TAG, "Menu: vegetables");
                         list = mDb.taskDao().loadVegetables();
                         break;
                     case R.id.bn_cans:
+                        TAKEN_QUERY = R.id.bn_cans;
                         Log.d(LOG_TAG, "Menu: cans");
                         list = mDb.taskDao().loadCans();
                         break;
                     case R.id.bn_cereals:
+                        TAKEN_QUERY = R.id.bn_cereals;
                         Log.d(LOG_TAG, "Menu: cereals");
                         list = mDb.taskDao().loadCereals();
                         break;
                     case R.id.bn_drinks:
+                        TAKEN_QUERY = R.id.bn_drinks;
                         Log.d(LOG_TAG, "Menu: drinks");
                         list = mDb.taskDao().loadDrinks();
                         break;
                     case R.id.bn_milky:
+                        TAKEN_QUERY = R.id.bn_milky;
                         Log.d(LOG_TAG, "Menu: milky");
                         list = mDb.taskDao().loadMilky();
                         break;
                     case R.id.bn_households:
+                        TAKEN_QUERY = R.id.bn_households;
                         Log.d(LOG_TAG, "Menu: households");
                         list = mDb.taskDao().loadHouseholds();
                         break;
                     case R.id.bn_ordinary:
+                        TAKEN_QUERY = ALL_LIST_ITEMS;
                         Log.d(LOG_TAG, "Menu: ordinary");
                         break;
                     default:
                         break;
                 }
-                if (list != null) {
-                    int id;
-                    String category;
-                    String name;
-
-                    for (TaskEntry item : list) {
-                        id = item.getId();
-                        name = item.getName();
-                        category = item.getCategory();
-                        id = item.getId();
-                        Log.d(LOG_TAG, "" + id + ", " + name + ", " + category);
-
-                    }
-                }
+//                if (list != null) {
+//                    int id;
+//                    String category;
+//                    String name;
+//
+//                    for (TaskEntry item : list) {
+//                        id = item.getId();
+//                        name = item.getName();
+//                        category = item.getCategory();
+//                        id = item.getId();
+//                        Log.d(LOG_TAG, "" + id + ", " + name + ", " + category);
+//
+//                    }
+//                }
                 mTasks = list;
-
-
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
