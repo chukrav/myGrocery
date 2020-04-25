@@ -26,4 +26,22 @@ public interface TaskDao {
     @Insert
     void insertAll(TaskEntry... taskEntries);
 
+    @Query("SELECT * FROM task WHERE category='VEGETABLE'")
+    List<TaskEntry> loadVegetables();
+
+    @Query("SELECT * FROM task WHERE category='DRINKS'")
+    List<TaskEntry> loadDrinks();
+
+    @Query("SELECT * FROM task WHERE category='CANS'")
+    List<TaskEntry> loadCans();
+
+    @Query("SELECT * FROM task WHERE category='HOUSEHOLDS'")
+    List<TaskEntry> loadHouseholds();
+
+    @Query("SELECT * FROM task WHERE category='CEREALS'")
+    List<TaskEntry> loadCereals();
+
+    @Query("SELECT * FROM task WHERE category='MILKY'")
+    List<TaskEntry> loadMilky();
+
 }

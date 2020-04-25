@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
     private GreenAdapter mAdapter;
     private RecyclerView mNumbersList;
     private AppDatabase mDb;
+    private List<TaskEntry> mTasks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,10 +103,12 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
             @Override
             public void run() {
                 final List<TaskEntry> entryList = mDb.taskDao().loadAllTasks();
+//                final List<TaskEntry> entryList = mDb.taskDao().loadVegetables();
+                mTasks = entryList;
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mAdapter.setTasks(entryList);
+                        mAdapter.setTasks(mTasks);
 //                        int id;
 //                        String category;
 //                        String name;
@@ -128,45 +131,97 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
     @Override
     public void onItemClickListener(int itemId) {
         Log.d(LOG_TAG, "Item clcked: " + itemId);
-        Toast.makeText(this,"Item clicked:"+itemId,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Item clicked:" + itemId, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //return super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.main_menu,menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.bn_vegetab:
-                Log.d(LOG_TAG,"Menu: vegetables");
-                return true;
-            case R.id.bn_cans:
-                Log.d(LOG_TAG,"Menu: cans");
-                return true;
-            case R.id.bn_cereals:
-                Log.d(LOG_TAG,"Menu: cereals");
-                return true;
-            case R.id.bn_drinks:
-                Log.d(LOG_TAG,"Menu: drinks");
-                return true;
-            case R.id.bn_milky:
-                Log.d(LOG_TAG,"Menu: milky");
-                return true;
-            case R.id.bn_households:
-                Log.d(LOG_TAG,"Menu: households");
-                return true;
-            case R.id.bn_ordinary:
-                Log.d(LOG_TAG,"Menu: ordinary");
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+    public boolean onOptionsItemSelected(@NonNull final MenuItem item) {
+        boolean my_return = true;
 
+        switch (item.getItemId()) {
+            case R.id.bn_vegetab: case R.id.bn_cans:
+             case R.id.bn_cereals: case R.id.bn_drinks:
+             case R.id.bn_milky:  case R.id.bn_households:
+             case R.id.bn_ordinary:
+                Log.d(LOG_TAG, "Menu clicked");
+                break;
+            default:
+                my_return = super.onOptionsItemSelected(item);
+        }
+        retreiveQuery(item.getItemId());
+        return my_return;
 
 
     }
+
+    private void retreiveQuery(final int item) {
+
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                List<TaskEntry> list = null;
+                switch (item) {
+                    case R.id.bn_vegetab:
+                        Log.d(LOG_TAG, "Menu: vegetables");
+                        list = mDb.taskDao().loadVegetables();
+                        break;
+                    case R.id.bn_cans:
+                        Log.d(LOG_TAG, "Menu: cans");
+                        list = mDb.taskDao().loadCans();
+                        break;
+                    case R.id.bn_cereals:
+                        Log.d(LOG_TAG, "Menu: cereals");
+                        list = mDb.taskDao().loadCereals();
+                        break;
+                    case R.id.bn_drinks:
+                        Log.d(LOG_TAG, "Menu: drinks");
+                        list = mDb.taskDao().loadDrinks();
+                        break;
+                    case R.id.bn_milky:
+                        Log.d(LOG_TAG, "Menu: milky");
+                        list = mDb.taskDao().loadMilky();
+                        break;
+                    case R.id.bn_households:
+                        Log.d(LOG_TAG, "Menu: households");
+                        list = mDb.taskDao().loadHouseholds();
+                        break;
+                    case R.id.bn_ordinary:
+                        Log.d(LOG_TAG, "Menu: ordinary");
+                        break;
+                    default:
+                        break;
+                }
+                if (list != null){
+                    int id;
+                    String category;
+                    String name;
+
+                    for (TaskEntry item : list) {
+                        id = item.getId();
+                        name = item.getName();
+                        category = item.getCategory();
+                        id = item.getId();
+                        Log.d(LOG_TAG, "" + id + ", " + name + ", " + category);
+
+                    }
+                }
+
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mAdapter.setTasks(mTasks);
+//                    }
+//                });
+            }
+        });
+
+    }
+
 }
