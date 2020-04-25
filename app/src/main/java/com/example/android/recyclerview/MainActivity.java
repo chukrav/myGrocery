@@ -84,8 +84,8 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
         mNumbersList.setAdapter(mAdapter);
 
         mDb = AppDatabase.getInstance(this.getApplicationContext());
-        List<TaskEntry> entryList = mDb.taskDao().loadAllTasks();
-        Log.d(LOG_TAG, "Got DB-handle. List length" + entryList.size());
+//        List<TaskEntry> entryList = mDb.taskDao().loadAllTasks();
+//        Log.d(LOG_TAG, "Got DB-handle. List length" + entryList.size());
     }
 
     @Override
@@ -146,10 +146,13 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
         boolean my_return = true;
 
         switch (item.getItemId()) {
-            case R.id.bn_vegetab: case R.id.bn_cans:
-             case R.id.bn_cereals: case R.id.bn_drinks:
-             case R.id.bn_milky:  case R.id.bn_households:
-             case R.id.bn_ordinary:
+            case R.id.bn_vegetab:
+            case R.id.bn_cans:
+            case R.id.bn_cereals:
+            case R.id.bn_drinks:
+            case R.id.bn_milky:
+            case R.id.bn_households:
+            case R.id.bn_ordinary:
                 Log.d(LOG_TAG, "Menu clicked");
                 break;
             default:
@@ -198,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
                     default:
                         break;
                 }
-                if (list != null){
+                if (list != null) {
                     int id;
                     String category;
                     String name;
@@ -212,13 +215,18 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
 
                     }
                 }
+                mTasks = list;
 
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        mAdapter.setTasks(mTasks);
-//                    }
-//                });
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //mAdapter = new GreenAdapter(this, this);
+                        mAdapter.setTasks(mTasks);
+                        mNumbersList.setAdapter(mAdapter);
+
+                    }
+                });
             }
         });
 

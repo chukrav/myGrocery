@@ -147,7 +147,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
 
     public void setTasks(List<TaskEntry> tasks) {
         mTaskEntries = tasks;
-//        notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 
     interface ItemClickListener {
