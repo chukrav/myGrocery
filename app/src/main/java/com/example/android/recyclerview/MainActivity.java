@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
 
     private static final int ALL_LIST_ITEMS = 0;
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static String LIFESTYLE_KEY = "lifeStileKey";
 
     /*
      * References to RecyclerView and Adapter to reset the list to its
@@ -85,8 +86,13 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
         mNumbersList.setAdapter(mAdapter);
 
         mDb = AppDatabase.getInstance(this.getApplicationContext());
-//        List<TaskEntry> entryList = mDb.taskDao().loadAllTasks();
-//        Log.d(LOG_TAG, "Got DB-handle. List length" + entryList.size());
+        if (savedInstanceState != null){
+            if (savedInstanceState.containsKey(LIFESTYLE_KEY)){
+                TAKEN_QUERY = savedInstanceState.getInt(LIFESTYLE_KEY);
+            }
+        }
+        retreiveQuery(TAKEN_QUERY);
+
     }
 
     @Override
@@ -96,6 +102,13 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
 //        retreiveTasks();
 
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+//        logAndAppendInstanceState()
+        outState.putInt(LIFESTYLE_KEY,TAKEN_QUERY);
     }
 
     private void retreiveTasks() {
