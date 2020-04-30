@@ -122,18 +122,6 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
                     @Override
                     public void run() {
                         mAdapter.setTasks(mTasks);
-//                        int id;
-//                        String category;
-//                        String name;
-
-//                        for (TaskEntry item : entryList) {
-//                            id = item.getId();
-//                            name = item.getName();
-//                            category = item.getCategory();
-//                            id = item.getId();
-//                            Log.d(LOG_TAG, "" + id + ", " + name + ", " + category);
-//
-//                        }
                     }
                 });
             }
