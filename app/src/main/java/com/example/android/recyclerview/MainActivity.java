@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
     private AppDatabase mDb;
     private List<TaskEntry> mTasks;
     private int TAKEN_QUERY = ALL_LIST_ITEMS;
+    private final String QUERY_STR = "taken_query";
 
 
     @Override
@@ -92,9 +93,20 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
     @Override
     protected void onResume() {
         super.onResume();
+//        Bundle bundle = getIntent().getExtras();
+//        if (bundle.getString(QUERY_STR) != null){
+//            TAKEN_QUERY = bundle.getInt(QUERY_STR);
+//        }
         retreiveQuery(TAKEN_QUERY);
 //        retreiveTasks();
 
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+//        getIntent().getExtras().putInt(QUERY_STR,TAKEN_QUERY);
 
     }
 
