@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
 
     private static final int ALL_LIST_ITEMS = 0;
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static String LIFESTYLE_KEY = "lifeStileKey";
 
     /*
      * References to RecyclerView and Adapter to reset the list to its
@@ -86,8 +87,13 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
         mNumbersList.setAdapter(mAdapter);
 
         mDb = AppDatabase.getInstance(this.getApplicationContext());
-//        List<TaskEntry> entryList = mDb.taskDao().loadAllTasks();
-//        Log.d(LOG_TAG, "Got DB-handle. List length" + entryList.size());
+        if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey(LIFESTYLE_KEY)) {
+                TAKEN_QUERY = savedInstanceState.getInt(LIFESTYLE_KEY);
+            }
+        }
+        retreiveQuery(TAKEN_QUERY);
+
     }
 
     @Override
@@ -104,10 +110,10 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-//        getIntent().getExtras().putInt(QUERY_STR,TAKEN_QUERY);
-
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+//        logAndAppendInstanceState()
+        outState.putInt(LIFESTYLE_KEY, TAKEN_QUERY);
     }
 
     private void retreiveTasks() {
@@ -121,18 +127,6 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
                     @Override
                     public void run() {
                         mAdapter.setTasks(mTasks);
-//                        int id;
-//                        String category;
-//                        String name;
-
-//                        for (TaskEntry item : entryList) {
-//                            id = item.getId();
-//                            name = item.getName();
-//                            category = item.getCategory();
-//                            id = item.getId();
-//                            Log.d(LOG_TAG, "" + id + ", " + name + ", " + category);
-//
-//                        }
                     }
                 });
             }
@@ -180,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
         final int item;
         item = items[0];
 
-        Log.d(LOG_TAG,"----Argument passed: "+items.length+", "+item);
+        Log.d(LOG_TAG, "----Argument passed: " + items.length + ", " + item);
 
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
