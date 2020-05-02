@@ -26,6 +26,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.android.recyclerview.database.AppDatabase;
+import com.example.android.recyclerview.database.ListUtils;
 import com.example.android.recyclerview.database.TaskEntry;
 
 import java.util.List;
@@ -44,8 +45,10 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
     private RecyclerView mNumbersList;
     private AppDatabase mDb;
     private List<TaskEntry> mTasks;
+    private List<TaskEntry> mListToDay;
     private int TAKEN_QUERY = ALL_LIST_ITEMS;
     private final String QUERY_STR = "taken_query";
+    private ListUtils mListUtils;
 
 
     @Override
@@ -93,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
             }
         }
         retreiveQuery(TAKEN_QUERY);
+        mListUtils = ListUtils.getInstance(mTasks, mListToDay);
 
     }
 
