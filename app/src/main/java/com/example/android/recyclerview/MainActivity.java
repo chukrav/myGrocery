@@ -15,6 +15,7 @@
  */
 package com.example.android.recyclerview;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -43,14 +44,14 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.Item
     private RecyclerView mNumbersList;
     private AppDatabase mDb;
     private List<TaskEntry> mTasks;
-    private int TAKEN_QUERY = ALL_LIST_ITEMS;
+    private int TAKEN_QUERY;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        TAKEN_QUERY = ALL_LIST_ITEMS;
         /*
          * Using findViewById, we get a reference to our RecyclerView from xml. This allows us to
          * do things like set the adapter of the RecyclerView and toggle the visibility.

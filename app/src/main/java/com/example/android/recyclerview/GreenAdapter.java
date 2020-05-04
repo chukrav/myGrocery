@@ -16,6 +16,7 @@
 package com.example.android.recyclerview;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -175,6 +176,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
         public void onClick(View view) {
             int elementId = mTaskEntries.get(getAdapterPosition()).getId();
             mItemClickListener.onItemClickListener(elementId);
+            listItemNumberView.setTextColor(Color.parseColor("#ff0000"));
 
         }
     }
